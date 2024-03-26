@@ -1,25 +1,63 @@
 # poetry-slam
 
-An opinionated build tool for python poetry projects, poetry-slam saves me having to add boilerplate build scripts to every project for things like tests, coverage, package installation, automatic formatting, and so on.
+An opinionated build tool for python poetry projects. poetry-slam saves me having to add optional dev dependencies and boilerplate build scripts to every project for things like tests, coverage, package installation, automatic formatting and &amp;c.
+
+### What It Does
+* installs isort, autoflake, and black
+* adds pytest and pytest-cov as dev dependencies to your pyproject.toml (optional)
+* adds opinionated defaults for isort, autoflake, black, pytest, and pytest-cov (optional)
+
 
 ## Installation
 
-Clone the repository and install slam locally:
+Clone the repository and install poetry-slam locally. You need the following prerequisites:
+
+* python
+* poetry
+
 
 ```bash
 % git clone https://github.com/evilchili/poetry-slam.git
 % cd poetry-slam
-% poetry build
+% poetry run slam build
 % pip3 install dist/*.whl
 ```
 
 ## Basic Usage:
 
-Use `slam` to build your projects. Your package source must be in the `src/` directory, and your tests must be in `test/`. The most common usage, and the default, if no command is specified, is to do a `build`,
-which formats your source, tests it, (re)installs the source packages to your virtual environment, and does a release build all in one step:
+### Configuring Your Project
+
+poetry-slam expects your package python source in `src/` and your tests in `test/`. 
+
+You'll probably want this configuration in your pyproject.toml, but poetry-slam won't do this for you:
+
+```toml
+packages = [
+    {include = "*", from = "src"},
+]
+```
+
+### Initializing poetry-slam
+
+The first time you use poetry-slam in a new project, it's a good idea to run `slam init`. This will add opinionated defaults for the build tooling directly to your pyproject.toml. 
 
 ```bash
 % cd /some/poetry-project/
+% slam init
+Added poetry-slam defaults to pyproject.toml
+% poetry update
+```
+
+### The Build Loop
+
+The most common usage and the default if no command is specified is to do a `build`, which will:
+
+* formats your source with isort, autoflake, and black;
+* run all tests;
+* (re)install the packages in your projet virtual environment; and 
+* does a package release build
+
+```bash
 % slam build
 Formatting...
 Testing...
@@ -61,7 +99,7 @@ configfile: pytest.ini
 plugins: cov-4.1.0
 collected 5 items
 
-test/test_slam.py .....                                                                                                                                                                                                                [100%]
+test/test_slam.py .....                                               [100%]
 
 ---------- coverage: platform linux, python 3.10.12-final-0 ----------
 Name                            Stmts   Miss  Cover   Missing
