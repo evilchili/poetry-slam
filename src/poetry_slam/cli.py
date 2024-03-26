@@ -46,7 +46,7 @@ def init():
     logger.debug(f"Checking for modifications to {target}")
     existing = target.read_text()
     if "### SLAM" in existing:
-        logging.info(f"Found what looks like poetry-slam modifications; stopping.")
+        logging.info("Found what looks like poetry-slam modifications; stopping.")
         print(f"Abort: It looks like poetry-slam has already modified {target}.")
     else:
         backup = Path(str(target) + ".slam-orig")
@@ -58,6 +58,9 @@ def init():
         new.rename(target)
         logging.debug(f"Renamed {new} to {target}")
         print(f"Added poetry-slam defaults to {target}")
+
+    logging.debug("Adding test dependencies to dev group.")
+    app_state["build_tool"].run_with_poetry("add", "-G", "dev", "pytest", "pytest-cov")
 
 
 @app.command()

@@ -18,5 +18,8 @@ ignore-init-module-imports = true    # exclude __init__.py when removing unused 
 remove-duplicate-keys = true         # remove all duplicate keys in objects
 remove-unused-variables = true       # remove unused variables
 
+[tool.pytest.ini_options]
+log_cli_level = "DEBUG"
+addopts = "--cov=src/croaker/ --cov-report=term-missing"
 
 ### ENDSLAM
