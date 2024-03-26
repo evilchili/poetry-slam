@@ -35,6 +35,32 @@ def main(
 
 
 @app.command()
+def init():
+    """
+    Add opinionated defaults to your pyproject.toml.
+    """
+    defaults = Path(__file__).parent / "defaults.toml"
+    target = app_state["build_tool"].project_root / "pyproject.toml"
+    if not target.exists():
+        raise RuntimeError(f"Could not find pyproject.toml at '{target}'")
+    logger.debug(f"Checking for modifications to {target}")
+    existing = target.read_text()
+    if "### SLAM" in existing:
+        logging.info(f"Found what looks like poetry-slam modifications; stopping.")
+        print(f"Abort: It looks like poetry-slam has already modified {target}.")
+    else:
+        backup = Path(str(target) + ".slam-orig")
+        backup.write_text(existing)
+        logging.debug(f"Saved backup of {target} to {backup}")
+        new = Path(str(target) + ".slam-new")
+        new.write_text(existing + "\n\n" + defaults.read_text())
+        logging.debug(f"Wrote temporary file {new}")
+        new.rename(target)
+        logging.debug(f"Renamed {new} to {target}")
+        print(f"Added poetry-slam defaults to {target}")
+
+
+@app.command()
 def format():
     """
     Run isort, autoflake, and black on the src/ and test/ directories.

@@ -72,7 +72,7 @@ class BuildTool:
     def test(self, args) -> bool:
         old_v = self.verbose
         self.verbose = True
-        returncode = self._exec("pytest", *args)
+        returncode = self.run("pytest", *args)
         self.verbose = old_v
         return returncode
 

@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "poetry-slam"
-version = "0.1.0"
+version = "1.0"
 description = "An opinionated build tool for python poetry projects"
 authors = ["evilchili <evilchili@gmail.com>"]
 readme = "README.md"
@@ -19,6 +19,17 @@ pyproject-autoflake = "^1.0.2"
 pytest-cov = "^4.0.0"
 
 [tool.poetry.group.dev.dependencies]
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+
+[tool.poetry.scripts]
+slam = "poetry_slam.cli:app"
+
+
+### SLAM
 
 [tool.black]
 line-length = 120
@@ -39,10 +50,4 @@ remove-duplicate-keys = true         # remove all duplicate keys in objects
 remove-unused-variables = true       # remove unused variables
 
 
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
-
-
-[tool.poetry.scripts]
-slam = "poetry_slam.cli:app"
+### ENDSLAM
