@@ -82,24 +82,30 @@ You can also run individual steps; see `slam --help` for details:
 
  Usage: slam [OPTIONS] COMMAND [ARGS]...
 
-╭─ Options ──────────────────────────────────────────────────────────────────────────────────────────╮
-│ --verbose               --no-verbose          Enable verbose output. [default: no-verbose]         │
-│ --log-level                             TEXT  Set the log level. [default: error]                  │
-│ --poetry                                PATH  Path to the poetry executable; defaults to the first │
-│                                               in your path.                                        │
-│                                               [default: poetry]                                    │
-│ --install-completion                          Install completion for the current shell.            │
-│ --show-completion                             Show completion for the current shell, to copy it or │
-│                                               customize the installation.                          │
-│ --help                                        Show this message and exit.                          │
-╰────────────────────────────────────────────────────────────────────────────────────────────────────╯
-╭─ Commands ─────────────────────────────────────────────────────────────────────────────────────────╮
-│ build       Calls format, test, and install before invoking 'poetry build'.                        │
-│ format      Run isort, autoflake, and black on the src/ and test/ directories.                     │
-│ init        Add opinionated defaults to your pyproject.toml.                                       │
-│ install     Synonym for 'poetry install'                                                           │
-│ test        Synonym for 'poetry run pytest' Output is always verbose.                              │
-╰────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭─ Options ──────────────────────────────────────────────────────────────────────╮
+│ --verbose               --no-verbose          Enable verbose output.           │
+│                                               [default: no-verbose]            │
+│ --log-level                             TEXT  Set the log level.               │
+│                                               [default: error]                 │
+│ --poetry                                PATH  Path to the poetry executable;   │
+│                                               defaults to the first in your    │
+│                                               path.                            │
+│                                               [default: poetry]                │
+│ --install-completion                          Install completion for the       │
+│                                               current shell.                   │
+│ --show-completion                             Show completion for the current  │
+│                                               shell, to copy it or customize   │
+│                                               the installation.                │
+│ --help                                        Show this message and exit.      │
+╰────────────────────────────────────────────────────────────────────────────────╯
+╭─ Commands ─────────────────────────────────────────────────────────────────────╮
+│ build     Calls format, test, and install before invoking 'poetry build'.      │
+│ format    Run isort, autoflake, and black on the src/ and test/ directories.   │
+│ init      Add opinionated defaults to your pyproject.toml.                     │
+│ install   Synonym for 'poetry install'                                         │
+│ test      Synonym for 'poetry run pytest' Output is always verbose.            │
+╰────────────────────────────────────────────────────────────────────────────────╯
+
 ```
 
 ### Testing With Pytest
