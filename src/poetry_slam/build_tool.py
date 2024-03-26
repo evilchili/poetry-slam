@@ -18,6 +18,7 @@ class BuildTool:
     Thin wrapper around poetry and some dev tools.
     """
 
+    project_root: Path = Path(".")
     poetry: Path = Path("poetry")
     verbose: bool = False
 
@@ -25,13 +26,13 @@ class BuildTool:
         """
         Execute a subprocess.
         """
-        cmdline = [str(self.poetry)] + list(command_line)
-        logger.info(" ".join(cmdline))
+        cmd = " ".join(command_line)
+        logger.info(f"Executing: '{cmd}'")
         if self.verbose:
-            result = subprocess.run(cmdline, shell=True)
+            result = subprocess.run(cmd, shell=True)
             return result.returncode
 
-        result = subprocess.run(cmdline, capture_output=True, shell=True)
+        result = subprocess.run(cmd, capture_output=True, shell=True)
         logger.debug(f"{result = }")
         if result.stdout:
             # log the output and optional print it
@@ -44,12 +45,12 @@ class BuildTool:
                 print(result.stderr.decode("utf-8"))
             if result.returncode != 0:
                 logger.error(result.stderr)
-                raise BuildError(f"Command Failed: {cmdline}")
+                raise BuildError(f"Command Failed: {command_line}")
             logger.info(result.stderr)
         return result.returncode
 
     def run_with_poetry(self, *command_line):
-        return self._exec(str(self.poetry), *command_line)
+        return self._exec(str(self.poetry.absolute()), *command_line)
 
     def run(self, *command_line):
         """
@@ -61,9 +62,11 @@ class BuildTool:
         return self.run_with_poetry("install")
 
     def auto_format(self) -> bool:
-        self._exec("isort", "src", "test")
-        self._exec("autoflake", "src", "test")
-        self._exec("black", "src", "test")
+        src = str((self.project_root / "src").absolute())
+        test = str((self.project_root / "test").absolute())
+        self._exec("isort", src, test)
+        self._exec("autoflake", src, test)
+        self._exec("black", src, test)
         return 0
 
     def test(self, args) -> bool:
