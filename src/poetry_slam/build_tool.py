@@ -21,7 +21,7 @@ class BuildTool:
     poetry: Path = Path("poetry")
     verbose: bool = False
 
-    def do(self, *command_line) -> bool:
+    def _exec(self, *command_line) -> bool:
         """
         Execute a poetry subprocess.
         """
@@ -48,23 +48,26 @@ class BuildTool:
             logger.info(result.stderr)
         return result.returncode
 
+    def run_with_poetry(self, *command_line):
+        return self._exec(str(self.poetry), *command_line)
+
     def run(self, *command_line):
         """
-        Same as do(), but prepend a 'run' subcommand.
+        Same as run_with_poetry(), but prepend a 'run' subcommand.
         """
-        return self.do("run", *command_line)
+        return self._exec("run", *command_line)
 
     def install(self) -> bool:
-        return self.do("install")
+        return self.run_with_poetry("install")
 
     def auto_format(self) -> bool:
-        self.run("isort", "src", "test")
-        self.run("autoflake", "src", "test")
-        self.run("black", "src", "test")
+        self._exec("isort", "src", "test")
+        self._exec("autoflake", "src", "test")
+        self._exec("black", "src", "test")
         return 0
 
     def test(self, args) -> bool:
-        return self.run("pytest", *args)
+        return self._exec("pytest", *args)
 
     def build(self) -> bool:
         print("Formatting...")
@@ -74,5 +77,5 @@ class BuildTool:
         print("Installing...")
         success += self.install()
         print("Building...")
-        success += self.do("build")
+        success += self.run_with_poetry("build")
         return success
