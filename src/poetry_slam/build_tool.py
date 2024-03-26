@@ -50,7 +50,7 @@ class BuildTool:
         return result.returncode
 
     def run_with_poetry(self, *command_line):
-        return self._exec(str(self.poetry.absolute()), *command_line)
+        return self._exec(str(self.poetry), *command_line)
 
     def run(self, *command_line):
         """
