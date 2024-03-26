@@ -23,15 +23,15 @@ class BuildTool:
 
     def _exec(self, *command_line) -> bool:
         """
-        Execute a poetry subprocess.
+        Execute a subprocess.
         """
         cmdline = [str(self.poetry)] + list(command_line)
         logger.info(" ".join(cmdline))
         if self.verbose:
-            result = subprocess.run(cmdline)
+            result = subprocess.run(cmdline, shell=True)
             return result.returncode
 
-        result = subprocess.run(cmdline, capture_output=True)
+        result = subprocess.run(cmdline, capture_output=True, shell=True)
         logger.debug(f"{result = }")
         if result.stdout:
             # log the output and optional print it
@@ -55,7 +55,7 @@ class BuildTool:
         """
         Same as run_with_poetry(), but prepend a 'run' subcommand.
         """
-        return self._exec("run", *command_line)
+        return self.run_with_poetry("run", *command_line)
 
     def install(self) -> bool:
         return self.run_with_poetry("install")
