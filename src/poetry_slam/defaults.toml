@@ -20,6 +20,6 @@ remove-unused-variables = true       # remove unused variables
 
 [tool.pytest.ini_options]
 log_cli_level = "DEBUG"
-addopts = "--cov=src/croaker/ --cov-report=term-missing"
+addopts = "--cov=src --cov-report=term-missing"
 
 ### ENDSLAM
