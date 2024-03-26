@@ -64,7 +64,7 @@ The most common usage and the default if no command is specified is to do a `bui
 * format your source with isort, autoflake, and black;
 * run all tests;
 * (re)install the packages in your projet virtual environment; and 
-* does a package release build
+* build a release in `dist/`.
 
 ```bash
 % slam
