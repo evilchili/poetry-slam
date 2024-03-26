@@ -50,7 +50,7 @@ Added poetry-slam defaults to pyproject.toml
 
 ### What You Don't Need
 
-Aside from pytest and pytest-cov, which poetry-slam will add for you, You don't need other dependencies in your projet's dev group. When you install poetry-slam you will also get isort and friends if they aren't already present, and these tools will automatically load configuration from the first `pyproject.toml` they find in your directory hierarchy.
+Aside from pytest and pytest-cov, which poetry-slam will add for you, You don't need other dependencies in your project's dev group. When you install poetry-slam you will also get isort and friends if they aren't already present, and these tools will automatically load configuration from the first `pyproject.toml` they find in your directory hierarchy.
 
 You also don't need tool-specific configuration files or global defaults, since the configs are added directly to your `pyproject.toml`.
 
@@ -63,7 +63,7 @@ The most common usage and the default if no command is specified is to do a `bui
 
 * format your source with isort, autoflake, and black;
 * run all tests;
-* (re)install the packages in your projet virtual environment; and 
+* (re)install the packages in your project virtual environment; and 
 * build a release in `dist/`.
 
 ```bash
