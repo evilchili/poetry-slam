@@ -23,7 +23,7 @@ Clone the repository and install poetry-slam locally. You need the following pre
 % pip3 install dist/*.whl
 ```
 
-## Basic Usage:
+## Usage
 
 ### Configuring Your Project
 
@@ -39,7 +39,7 @@ packages = [
 
 ### Initializing poetry-slam
 
-The first time you use poetry-slam in a new project, it's a good idea to run `slam init`. This will add opinionated defaults for the build tooling directly to your pyproject.toml. 
+The first time you use poetry-slam in a new project, it's a good idea to run `slam init`. This will add opinionated defaults for the build tooling directly to your pyproject.toml. It will also add both pytest and pytest-cov as dependencies in your dev group.
 
 ```bash
 % cd /some/poetry-project/
@@ -47,6 +47,15 @@ The first time you use poetry-slam in a new project, it's a good idea to run `sl
 Added poetry-slam defaults to pyproject.toml
 % poetry update
 ```
+
+### What You Don't Need
+
+Aside from pytest and pytest-cov, which poetry-slam will add for you, You don't need other dependencies to your projet's dev group. When you install poetry-slam you will also get isort and friends if they aren't already present, and these tools will automatically load configuration from the first pyproject.toml they find in your directory hierarchy.
+
+You also don't need tool-specific configuration files or global defaults, since the configs are added directly to your pyproject.toml.
+
+
+## Usage
 
 ### The Build Loop
 
@@ -112,3 +121,15 @@ TOTAL                              88     42    52%
 
 # ...and so on...
 ```
+
+## Overriding the Defaults
+
+Why would you do that? Clearly my opinions are the best opinions. :D
+
+...but if you want to be wrong, run `slam init` and then modify the generated configuration to your liking. So long as you don't remove the slam comment:
+
+```
+### SLAM
+```
+
+running `slam init` again will not override your changes.
