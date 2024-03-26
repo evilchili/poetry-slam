@@ -1,0 +1,48 @@
+[tool.poetry]
+name = "poetry-slam"
+version = "0.1.0"
+description = "An opinionated build tool for python poetry projects"
+authors = ["evilchili <evilchili@gmail.com>"]
+readme = "README.md"
+packages = [
+    {include = "*", from = "src"},
+]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+typer = "^0.9.0"
+rich = "^13.7.0"
+pytest = "^8.1.1"
+black = "^23.3.0"
+isort = "^5.12.0"
+pyproject-autoflake = "^1.0.2"
+pytest-cov = "^4.0.0"
+
+[tool.poetry.group.dev.dependencies]
+
+[tool.black]
+line-length = 120
+target-version = ['py310']
+
+[tool.isort]
+multi_line_output = 3
+line_length = 120
+include_trailing_comma = true
+
+[tool.autoflake]
+check = false                        # return error code if changes are needed
+in-place = true                      # make changes to files instead of printing diffs
+recursive = true                     # drill down directories recursively
+remove-all-unused-imports = true     # remove all unused imports (not just those from the standard library)
+ignore-init-module-imports = true    # exclude __init__.py when removing unused imports
+remove-duplicate-keys = true         # remove all duplicate keys in objects
+remove-unused-variables = true       # remove unused variables
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+
+[tool.poetry.scripts]
+slam = "poetry_slam.cli:app"
