@@ -1,0 +1,22 @@
+### SLAM
+
+[tool.black]
+line-length = 120
+target-version = ['py310']
+
+[tool.isort]
+multi_line_output = 3
+line_length = 120
+include_trailing_comma = true
+
+[tool.autoflake]
+check = false                        # return error code if changes are needed
+in-place = true                      # make changes to files instead of printing diffs
+recursive = true                     # drill down directories recursively
+remove-all-unused-imports = true     # remove all unused imports (not just those from the standard library)
+ignore-init-module-imports = true    # exclude __init__.py when removing unused imports
+remove-duplicate-keys = true         # remove all duplicate keys in objects
+remove-unused-variables = true       # remove unused variables
+
+
+### ENDSLAM
