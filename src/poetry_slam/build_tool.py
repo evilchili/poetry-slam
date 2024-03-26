@@ -79,10 +79,10 @@ class BuildTool:
     def build(self) -> bool:
         print("Formatting...")
         success = self.auto_format()
-        print("Testing...")
-        success += self.test([])
         print("Installing...")
         success += self.install()
+        print("Testing...")
+        success += self.test([])
         print("Building...")
         success += self.run_with_poetry("build")
         return success
