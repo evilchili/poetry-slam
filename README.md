@@ -4,7 +4,7 @@ An opinionated build tool for python poetry projects. poetry-slam saves me havin
 
 ### What It Does
 * installs isort, autoflake, and black
-* adds pytest and pytest-cov as dev dependencies to your pyproject.toml (optional)
+* adds pytest and pytest-cov as dev dependencies to your `pyproject.toml` (optional)
 * adds opinionated defaults for isort, autoflake, black, pytest, and pytest-cov (optional)
 
 
@@ -29,7 +29,7 @@ Clone the repository and install poetry-slam locally. You need the following pre
 
 poetry-slam expects your package python source in `src/` and your tests in `test/`. 
 
-You'll probably want this configuration in your pyproject.toml, but poetry-slam won't do this for you:
+You'll probably want this configuration in your `pyproject.toml`, but poetry-slam won't do this for you:
 
 ```toml
 packages = [
@@ -39,7 +39,7 @@ packages = [
 
 ### Initializing poetry-slam
 
-The first time you use poetry-slam in a new project, it's a good idea to run `slam init`. This will add opinionated defaults for the build tooling directly to your pyproject.toml. It will also add both pytest and pytest-cov as dependencies in your dev group.
+The first time you use poetry-slam in a new project, it's a good idea to run `slam init`. This will add opinionated defaults for the build tooling directly to your `pyproject.toml`. It will also add both pytest and pytest-cov as dependencies in your dev group.
 
 ```bash
 % cd /some/poetry-project/
@@ -50,9 +50,9 @@ Added poetry-slam defaults to pyproject.toml
 
 ### What You Don't Need
 
-Aside from pytest and pytest-cov, which poetry-slam will add for you, You don't need other dependencies to your projet's dev group. When you install poetry-slam you will also get isort and friends if they aren't already present, and these tools will automatically load configuration from the first pyproject.toml they find in your directory hierarchy.
+Aside from pytest and pytest-cov, which poetry-slam will add for you, You don't need other dependencies in your projet's dev group. When you install poetry-slam you will also get isort and friends if they aren't already present, and these tools will automatically load configuration from the first `pyproject.toml` they find in your directory hierarchy.
 
-You also don't need tool-specific configuration files or global defaults, since the configs are added directly to your pyproject.toml.
+You also don't need tool-specific configuration files or global defaults, since the configs are added directly to your `pyproject.toml`.
 
 
 ## Usage
