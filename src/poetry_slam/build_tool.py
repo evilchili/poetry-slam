@@ -70,7 +70,11 @@ class BuildTool:
         return 0
 
     def test(self, args) -> bool:
-        return self._exec("pytest", *args)
+        old_v = self.verbose
+        self.verbose = True
+        returncode = self._exec("pytest", *args)
+        self.verbose = old_v
+        return returncode
 
     def build(self) -> bool:
         print("Formatting...")
