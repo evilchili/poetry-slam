@@ -43,7 +43,7 @@ platform linux -- Python 3.10.12, pytest-8.1.1, pluggy-1.4.0
 rootdir: /tmp/test_project
 configfile: pyproject.toml
 plugins: cov-5.0.0
-collected 1 item                                                                                                                                                                                                                             
+collected 1 item
 
 test/test_test_project.py x                                     [100%]
 test/test_test_project_cli.py x                                 [100%]
