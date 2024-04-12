@@ -23,9 +23,48 @@ Clone the repository and install poetry-slam locally. You need the following pre
 % pip3 install dist/*.whl
 ```
 
-## Usage
+## Starting a New Project
 
-### Configuring Your Project
+poetry-slam can generate a boilerplate python project with a cli:
+
+```bash
+% mkdir /tmp/test_project
+% cd /tmp/test_project
+% git init
+Initialized empty Git repository in /tmp/test_project/.git/
+
+% slam new test_project
+Added poetry-slam defaults to pyproject.toml
+Formatting...
+Installing...
+Testing...
+========== test session starts ==========
+platform linux -- Python 3.10.12, pytest-8.1.1, pluggy-1.4.0
+rootdir: /tmp/test_project
+configfile: pyproject.toml
+plugins: cov-5.0.0
+collected 1 item                                                                                                                                                                                                                             
+
+test/test_test_project.py x                                     [100%]
+test/test_test_project_cli.py x                                 [100%]
+
+---------- coverage: platform linux, python 3.10.12-final-0 ----------
+Name                           Stmts   Miss  Cover   Missing
+------------------------------------------------------------
+src/test_project/__init__.py       0      0   100%
+src/test_project/cli.py           23      9    61%   37-50, 57
+------------------------------------------------------------
+TOTAL                             23      9    61%
+
+
+========== 2 xfailed in 0.11s ==========
+Building...
+slam build: SUCCESS
+Successfully initialized new default project test_project.
+```
+
+
+## Configuring An Existing Project
 
 poetry-slam expects your package python source in `src/` and your tests in `test/`. 
 
@@ -37,7 +76,7 @@ packages = [
 ]
 ```
 
-### Initializing poetry-slam
+#### Initializing poetry-slam
 
 The first time you use poetry-slam in a new project, it's a good idea to run `slam init`. This will add opinionated defaults for the build tooling directly to your `pyproject.toml`. It will also add both pytest and pytest-cov as dependencies in your dev group.
 
@@ -48,14 +87,12 @@ Added poetry-slam defaults to pyproject.toml
 % poetry update
 ```
 
-### What You Don't Need
+#### What You Don't Need
 
 Aside from pytest and pytest-cov, which poetry-slam will add for you, You don't need other dependencies in your project's dev group. When you install poetry-slam you will also get isort and friends if they aren't already present, and these tools will automatically load configuration from the first `pyproject.toml` they find in your directory hierarchy.
 
 You also don't need tool-specific configuration files or global defaults, since the configs are added directly to your `pyproject.toml`.
 
-
-## Usage
 
 ### The Build Loop
 
@@ -108,7 +145,7 @@ You can also run individual steps; see `slam --help` for details:
 
 ```
 
-### Testing With Pytest
+## Testing With Pytest
 
 Anything passed to `slam test` will be passed directly to pytest as command-line arguments. So for example:
 
@@ -117,7 +154,7 @@ Anything passed to `slam test` will be passed directly to pytest as command-line
 ```
 
 
-### Debugging
+## Debugging
 
 Get gory details with the combination of `--verbose` and `--log-level` most suitable to your liking:
 
