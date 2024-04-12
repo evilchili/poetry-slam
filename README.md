@@ -140,6 +140,7 @@ You can also run individual steps; see `slam --help` for details:
 │ format    Run isort, autoflake, and black on the src/ and test/ directories.   │
 │ init      Add opinionated defaults to your pyproject.toml.                     │
 │ install   Synonym for 'poetry install'                                         │
+│ new       Initialize a project with boilerplate code.                          │
 │ test      Synonym for 'poetry run pytest' Output is always verbose.            │
 ╰────────────────────────────────────────────────────────────────────────────────╯
 
